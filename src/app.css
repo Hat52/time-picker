@@ -1,0 +1,28 @@
+.time-picker-container select{
+    border:none;
+    font-weight: 700;
+    font-size: 18px;
+    width: max-content;
+    background-color: inherit;
+    height: 30px;
+    /* padding-left: 5%; */
+    -webkit-appearance: none;
+  -moz-appearance: none;
+}
+/* For IE10 */
+    select::-ms-expand {
+        display: none;
+    }
+    select:focus{
+        outline: none
+    }
+/* Hiding scroll bar */
+.time-picker-container select::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .time-picker-container select {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
