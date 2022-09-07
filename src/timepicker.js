@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './app.css'
 const hoursList24 = ["01","02","03","04","05","06","07","08","09",10,11,12,13,14,15,16,17,18,19,20,21,22,23,"00"]
+const minutesList = []
+for(let i=1;i<=60;i++){
+    minutesList.push(i<10?`0${i}`:i)
+}
 export default function TimePicker({value,setValue}) {
     const [hours,setHours] = useState("00")
     const [min,setMin] = useState("00")
@@ -35,8 +39,13 @@ export default function TimePicker({value,setValue}) {
             </select>
             <span>:</span>
             <select className="select-two" onChange={({target:{value}})=>onChangeMin(value)} value={`${min}:`}>
-                <option value={"00"}>00</option>
-                <option value={30}>30</option>
+                {
+                    minutesList.map((minutes)=>{
+                        return(
+                            <option value={30}>{minutes}</option>
+                        )
+                    })
+                }
             </select>
             <span>:</span>
             <select className="select-am" onChange={({target:{value}})=>onChangeMin(value)}>
