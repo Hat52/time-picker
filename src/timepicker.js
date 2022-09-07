@@ -5,7 +5,7 @@ const minutesList = []
 for(let i=1;i<=60;i++){
     minutesList.push(i<10?`0${i}`:i)
 }
-export default function TimePicker({value,setValue}) {
+export default function TimePicker({value,setValue,is24Hours=true}) {
     const [hours,setHours] = useState("00")
     const [min,setMin] = useState("00")
     // const [value,setValue] = useState()
@@ -31,6 +31,9 @@ export default function TimePicker({value,setValue}) {
             <select className="select-one" onChange={({target:{value}})=>onChangeHours(value)} value={`${hours}:`}>
                 {
                     hoursList24.map(hour=>{
+                        if(!is24Hours && (hour>12 || hour ==="00")){
+                            return ''
+                        }
                         return(
                             <option value={hour}>{hour}</option>
                         )
@@ -47,11 +50,11 @@ export default function TimePicker({value,setValue}) {
                     })
                 }
             </select>
-            <span>:</span>
+            {is24Hours ?null:<><span>:</span>
             <select className="select-am" onChange={({target:{value}})=>onChangeMin(value)}>
                 <option value={"am"}>AM</option>
                 <option value={"pm"}>PM</option>
-            </select>
+            </select></>}
         </div>
         
     )
