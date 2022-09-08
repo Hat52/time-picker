@@ -53,7 +53,7 @@ export default function TimePicker({value,setValue,is24Hours=true}) {
             {is24Hours ?null:<><span>:</span>
             <select className="select-am" onChange={({target:{value}})=>onChangeMin(value)}>
                 <option value={"am"}>AM</option>
-                <option value={"pm"}>PM</option>
+                <option value={"pm"}>PM</option> 
             </select></>}
         </div>
         
