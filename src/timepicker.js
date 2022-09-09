@@ -26,7 +26,7 @@ export default function TimePicker({value,setValue,is24Hours=true}) {
         setMin(value)
         setValue(`${hours}:${value}`)
     }
-    return(
+    return( 
         <div className="d-flex time-picker-container ms-2">
             <select className="select-one" onChange={({target:{value}})=>onChangeHours(value)} value={`${hours}:`}>
                 {
