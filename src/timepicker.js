@@ -55,7 +55,7 @@ export default function TimePicker({value,setValue,is24Hours=true}) {
                 <option value={"am"}>AM</option>
                 <option value={"pm"}>PM</option> 
             </select></>}
-        </div>
+        </div>   
         
     )
 }
