@@ -5,26 +5,28 @@ const minutesList = []
 for(let i=1;i<=60;i++){
     minutesList.push(i<10?`0${i}`:i)
 }
-export default function TimePicker({value,setValue,is24Hours=true}) {
+export default function TimePicker({value,setValue,is24Hours=false}) {
     const [hours,setHours] = useState("00")
     const [min,setMin] = useState("00")
+    const [period,setPeriod] = useState("am")
     // const [value,setValue] = useState()
     useEffect(()=>{
         if(value.length) {
             const splitedValue = value.split(":")
             setHours(splitedValue[0])
-            setMin(splitedValue[1])
+            setMin(splitedValue[1].slice(0,3))
         }
     },[value])
-    const onChangeHours = (value) =>{
-        console.log("Here")
-        setHours(value)
-        setValue(`${value}:${min}`)
+    const onChangeHours = (hour) =>{
+        console.log(hour)
+        setHours(hour)
+        setValue(`${hour}:${min} ${period}`)
+        console.log(`${hour}:${min} ${period}`)
     }
-    const onChangeMin = (value) =>{
-        console.log("Here")
-        setMin(value)
-        setValue(`${hours}:${value}`)
+    const onChangeMin = (minutes) =>{
+        setMin(minutes)
+        setValue(`${hours}:${minutes} ${period}`)
+        console.log(`${hours}:${minutes} ${period}`)
     }
     return( 
         <div className="d-flex time-picker-container ms-2">
@@ -45,13 +47,13 @@ export default function TimePicker({value,setValue,is24Hours=true}) {
                 {
                     minutesList.map((minutes)=>{
                         return(
-                            <option value={30}>{minutes}</option>
+                            <option value={minutes}>{minutes}</option>
                         )
                     })
                 }
             </select>
             {is24Hours ?null:<><span>:</span>
-            <select className="select-am" onChange={({target:{value}})=>onChangeMin(value)}>
+            <select className="select-am" onChange={({target:{value}})=>setPeriod(value)}>
                 <option value={"am"}>AM</option>
                 <option value={"pm"}>PM</option> 
             </select></>}
